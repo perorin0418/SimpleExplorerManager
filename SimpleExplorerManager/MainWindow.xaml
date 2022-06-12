@@ -1,0 +1,224 @@
+﻿<Window x:Class="SimpleExplorerManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleExplorerManager"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+        mc:Ignorable="d"
+        Title="SimpleExplorerManager" Height="260" Width="266" WindowStyle="ToolWindow">
+
+    <Window.Resources>
+        <DataTemplate x:Key="GroupHeadderTemplate">
+            <Border Background="WhiteSmoke" BorderThickness="0,0,0,2" BorderBrush="DarkBlue" >
+                <emoji:TextBlock Text="{Binding Name}" Foreground="DarkBlue" FontSize="14"/>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="19" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" x:Name="tabControl">
+            <TabItem>
+                <TabItem.Header>
+                    <emoji:TextBlock FontSize="12" Text="📒一覧"></emoji:TextBlock>
+                </TabItem.Header>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="currentExpListbox" MouseDoubleClick="listbox_MouseDoubleClick" MouseLeftButtonUp="listbox_MouseLeftButtonUp" MouseRightButtonUp="listbox_MouseRightButtonUp" SelectionChanged="listbox_SelectionChanged">
+                        <ListBox.GroupStyle>
+                            <GroupStyle HeaderTemplate="{StaticResource GroupHeadderTemplate}"/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <emoji:TextBlock FontSize="12" Text="{Binding LocationName}" ToolTip="{Binding LocationURL}"></emoji:TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <emoji:TextBlock FontSize="12" Text="⭐ブックマーク"></emoji:TextBlock>
+                </TabItem.Header>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Background="White" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Button x:Name="editBookmarkButton" HorizontalAlignment="Left" Margin="5,4,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Click="editBookmarkButton_Click">
+                            <Button.Content>
+                                <emoji:TextBlock FontSize="14" Text="✏️編集"></emoji:TextBlock>
+                            </Button.Content>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" x:Name="bookmarkExpListBox" MouseDoubleClick="listbox_MouseDoubleClick" MouseLeftButtonUp="listbox_MouseLeftButtonUp" MouseRightButtonUp="listbox_MouseRightButtonUp" SelectionChanged="listbox_SelectionChanged">
+                        <ListBox.GroupStyle>
+                            <GroupStyle HeaderTemplate="{StaticResource GroupHeadderTemplate}"/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <emoji:TextBlock FontSize="12" Text="{Binding LocationName}" ToolTip="{Binding LocationURL}"></emoji:TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <emoji:TextBlock FontSize="12" Text="⚙️設定"></emoji:TextBlock>
+                </TabItem.Header>
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <ToggleButton x:Name="redCircleButton" HorizontalAlignment="Left" Margin="1,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🔴"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="orangeCircleButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟠"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="yellowCircleButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟡"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="greenCircleButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟢"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="blueCircleButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🔵"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="purpleCircleButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟣"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="brownCircleButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟤"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="redSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟥"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="orangeSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟧"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="yellowSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟨"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="greenSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟩"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="blueSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟦"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="purpleSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟪"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+            <ToggleButton x:Name="brownSquareButton" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="kindButton_Click">
+                <ToggleButton.Content>
+                    <emoji:TextBlock FontSize="10" Text="🟫"></emoji:TextBlock>
+                </ToggleButton.Content>
+                <ToggleButton.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </ToggleButton.Resources>
+            </ToggleButton>
+        </StackPanel>
+    </Grid>
+</Window>
