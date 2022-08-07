@@ -17,7 +17,7 @@ namespace SimpleExplorerManager.Bookmark
             + Path.DirectorySeparatorChar + "SimpleExplorerManager" + Path.DirectorySeparatorChar + "config";
         public static string BookmarkConfigFile = BookmarkConfigPath + Path.DirectorySeparatorChar + "bookmark.json";
 
-        public static void craeteNewFile()
+        public static void createNewFile()
         {
             if (!Directory.Exists(BookmarkConfigPath))
             {
@@ -46,7 +46,7 @@ namespace SimpleExplorerManager.Bookmark
         {
             if (!File.Exists(BookmarkConfigFile))
             {
-                craeteNewFile();
+                createNewFile();
             }
             try
             {
@@ -66,7 +66,7 @@ namespace SimpleExplorerManager.Bookmark
         {
             if (!File.Exists(BookmarkConfigFile))
             {
-                craeteNewFile();
+                createNewFile();
             }
             string json = File.ReadAllText(BookmarkConfigFile);
             BookmarkGroupSuite suite = JsonSerializer.Deserialize<BookmarkGroupSuite>(json);

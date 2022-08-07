@@ -50,7 +50,7 @@ namespace SimpleExplorerManager.Explorer
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.Message);
+                // MessageBox.Show(e.Message);
             }
             return list;
         }
@@ -64,7 +64,7 @@ namespace SimpleExplorerManager.Explorer
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                // MessageBox.Show(e.Message);
             }
         }
 
@@ -81,7 +81,7 @@ namespace SimpleExplorerManager.Explorer
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                // MessageBox.Show(e.Message);
             }
         }
 
